@@ -1,136 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laya M S | Portfolio</title>
 
 <style>
-/* ------------------ RESET ------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 *{
-  margin:0; padding:0; box-sizing:border-box;
-  font-family: 'Poppins', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
 }
 html{scroll-behavior:smooth}
 
-/* ------------------ BACKGROUND ------------------ */
+/* ================= BACKGROUND + PARALLAX ================= */
 body{
-  color:#fff;
-  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
-  background-size: 600% 600%;
-  animation: gradientBG 16s ease infinite;
-}
-@keyframes gradientBG{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  color:#eaeaf0;
+  background:
+    radial-gradient(circle at 20% 20%, #1f3b4d, transparent 45%),
+    radial-gradient(circle at 80% 10%, #1a5f63, transparent 40%),
+    radial-gradient(circle at 50% 80%, #2a1f4d, transparent 45%),
+    #070b1a;
+  background-attachment: fixed;
+  overflow-x:hidden;
+  cursor:none; /* hide default cursor */
 }
 
-/* ------------------ NAV ------------------ */
+/* ===== SUBTLE NOISE TEXTURE ===== */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ================= CUSTOM CURSOR ================= */
+.cursor-dot,
+.cursor-ring{
+  position:fixed;
+  pointer-events:none;
+  z-index:9999;
+}
+.cursor-dot{
+  width:6px;
+  height:6px;
+  background:#4deeea;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.cursor-ring{
+  width:32px;
+  height:32px;
+  border:1px solid rgba(77,238,234,0.5);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 18px rgba(77,238,234,0.4);
+}
+
+/* ================= SECTION REVEAL (CSS ONLY) ================= */
+section{
+  padding:100px 12%;
+  animation:reveal linear both;
+  animation-timeline:view();
+  animation-range:entry 20% cover 30%;
+}
+@keyframes reveal{
+  from{opacity:0; transform:translateY(50px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* ================= NAV ================= */
 nav{
   position:fixed;
-  top:0; width:100%;
+  top:0;
+  width:100%;
+  padding:16px 10%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:18px 10%;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
+  background:rgba(5,10,25,0.65);
+  backdrop-filter:blur(14px);
   z-index:100;
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
-nav h1{font-size:24px; color:#00eaff}
-nav ul{list-style:none; display:flex; gap:25px}
-nav a{text-decoration:none; color:#fff; font-weight:500}
-nav a:hover{color:#00eaff}
+nav h1{color:#4deeea;font-weight:600}
+nav ul{list-style:none;display:flex;gap:22px}
+nav a{
+  text-decoration:none;
+  color:#cfd3ff;
+  font-size:14px;
+  position:relative;
+}
+nav a::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:-4px;
+  width:0;
+  height:2px;
+  background:#4deeea;
+  transition:.3s;
+}
+nav a:hover::after{width:100%}
+nav a:hover{color:#4deeea}
 
-/* ------------------ SECTIONS ------------------ */
-section{
-  padding:100px 12%;
+/* ================= NEON SEPARATOR ================= */
+.separator{
+  width:80px;
+  height:4px;
+  background:#4deeea;
+  margin:30px 0;
+  border-radius:10px;
+  box-shadow:0 0 15px #4deeea88;
 }
+
+/* ================= HEADINGS ================= */
 h2{
-  font-size:36px;
-  margin-bottom:25px;
-  color:#00eaff;
+  font-size:34px;
+  margin-bottom:20px;
 }
+h2 span{color:#4deeea}
 
-/* ------------------ HERO ------------------ */
+/* ================= HERO ================= */
 #home{
   min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
-#home h1{font-size:50px}
-#home span{color:#00eaff}
-#home p{margin-top:12px; font-size:18px; opacity:0.9}
-
-/* ------------------ ABOUT ------------------ */
-#about p{
-  font-size:18px;
-  line-height:1.7;
-  max-width:850px;
+#home small{
+  color:#4deeea;
+  letter-spacing:1.4px;
+  font-weight:500;
+}
+#home h1{
+  font-size:56px;
+  font-weight:700;
+  margin:15px 0;
+}
+#home p{
+  max-width:650px;
+  font-size:16px;
+  opacity:.85;
 }
 
-/* ------------------ GLASS CARDS ------------------ */
+/* ================= GLASS + NEON ================= */
 .glass{
-  background:rgba(255,255,255,0.1);
-  border-radius:16px;
-  padding:25px;
-  backdrop-filter: blur(12px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  transition:transform .4s;
+  background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:24px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 20px 40px rgba(0,0,0,.45);
+  transition:.35s ease;
 }
-.glass:hover{transform:translateY(-8px)}
+.glass:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 35px rgba(77,238,234,.35);
+}
 
-/* ------------------ SKILLS ------------------ */
+/* ================= ABOUT ================= */
+.about-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:25px;
+}
+
+/* ================= SKILLS ================= */
 .skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+.skill-box h3{margin-bottom:15px;color:#4deeea}
+.chips span{
+  display:inline-block;
+  padding:6px 12px;
+  margin:5px;
+  border-radius:20px;
+  background:rgba(255,255,255,.08);
+  font-size:13px;
+  transition:.25s;
+}
+.chips span:hover{
+  background:#4deeea22;
+  color:#4deeea;
+  box-shadow:0 0 12px #4deeea55;
+}
+
+/* ================= PROJECTS ================= */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+.project-card img{
+  width:100%;
+  border-radius:14px;
+  margin-bottom:15px;
+  transition:.4s;
+}
+.project-card:hover img{
+  transform:scale(1.07);
+  box-shadow:0 0 30px rgba(77,238,234,.45);
+}
+
+/* ================= EDUCATION ================= */
+.timeline{
+  border-left:2px solid rgba(77,238,234,.4);
+  padding-left:30px;
+}
+.timeline .glass{margin-bottom:30px}
+
+/* ================= CERTIFICATIONS ================= */
+.cert-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+.badge{
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:12px;
+  background:#4deeea22;
+  color:#4deeea;
+  display:inline-block;
+  margin-bottom:10px;
+}
+
+/* ================= CONTACT ================= */
+.contact-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:25px;
 }
+.contact-grid a{
+  text-decoration:none;
+  color:#eaeaf0;
+}
 
-/* ------------------ PROJECTS ------------------ */
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-.project-card{
-  overflow:hidden;
-  position:relative;
-}
-.project-card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:14px;
-}
-.project-content{
-  margin-top:15px;
-}
-.project-content h3{color:#00eaff}
-
-/* ------------------ CONTACT ------------------ */
-#contact a{color:#00eaff; text-decoration:none}
-#contact p{font-size:18px; margin-bottom:10px}
-
-/* ------------------ FOOTER ------------------ */
+/* ================= FOOTER ================= */
 footer{
   text-align:center;
-  padding:25px;
-  background:rgba(0,0,0,0.4);
-  margin-top:40px;
+  padding:30px;
+  opacity:.6;
 }
 
-/* ------------------ MOBILE ------------------ */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   nav ul{display:none}
-  #home h1{font-size:38px}
+  #home h1{font-size:40px}
+  .about-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
-<body>
+<body
+onmousemove="
+document.querySelector('.cursor-dot').style.left=event.clientX+'px';
+document.querySelector('.cursor-dot').style.top=event.clientY+'px';
+document.querySelector('.cursor-ring').style.left=event.clientX+'px';
+document.querySelector('.cursor-ring').style.top=event.clientY+'px';
+"
+>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- YOUR ORIGINAL HTML BELOW (UNCHANGED) -->
 
 <nav>
   <h1>Laya M S</h1>
@@ -139,75 +281,114 @@ footer{
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certifications</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="home">
-  <h1>Hello, I'm <span>Laya M S</span></h1>
-  <p>Computer Science Engineering Student • Cloud & Networking Enthusiast</p>
+  <small>COMPUTER SCIENCE ENGINEERING STUDENT</small>
+  <h1>Hi, I'm <span style="color:#4deeea">Laya M S</span></h1>
+  <div class="separator"></div>
+  <p>
+    Passionate about Full-Stack Development, Cybersecurity, Cloud Computing & Networking
+    Building impactful solutions through data-driven innovation.
+  </p>
 </section>
-
-<!-- ABOUT -->
 <section id="about">
-  <h2>About Me</h2>
-  <div class="glass">
-    Engineering student with a foundation in Networking and Cloud technologies,
-    passionate about solving real-world problems through data-driven solutions.
-    Actively building impactful projects and continuously expanding technical skills.
+  <h2>About <span>Me</span></h2>
+  <div class="about-grid">
+    <div class="glass">
+      Currently an engineering student at <b>Easwari Engineering College, Chennai</b>,
+      with a strong interest in creating impactful tech solutions and blending
+      creativity with technology. I have a solid foundation in Web Development, Database management, Networking and
+      Cloud technologies and enjoy solving real-world problems through
+      data-driven solutions.
+    </div>
+    <div class="glass">
+      <p><b>CGPA:</b> 8.66</p><br>
+      <p><b>Location:</b> India</p>
+    </div>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
-  <h2>Skills</h2>
+  <h2>My <span>Skills</span></h2>
   <div class="skills-grid">
-    <div class="glass">💻 Python, C, C#, Java, JavaScript</div>
-    <div class="glass">🌐 HTML, CSS, JS, ASP.NET</div>
-    <div class="glass">☁️ Cloud Basics, Networking, TCP/IP</div>
-    <div class="glass">🗄 MySQL, SQL Server</div>
-    <div class="glass">🤝 Communication, Team Leadership</div>
+    <div class="glass skill-box">
+      <h3>Programming</h3>
+      <div class="chips"><span>Python</span><span>C</span><span>C#</span><span>Java</span><span>JavaScript</span></div>
+    </div>
+    <div class="glass skill-box">
+      <h3>Web & Backend</h3>
+      <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>ASP.NET</span></div>
+    </div>
+    <div class="glass skill-box">
+      <h3>Cloud & Networking</h3>
+      <div class="chips"><span>Cloud Basics</span><span>OSI</span><span>TCP/IP</span></div>
+    </div>
+    <div class="glass skill-box">
+      <h3>Soft Skills</h3>
+      <div class="chips"><span>Communication</span><span>Leadership</span><span>Problem Solving</span></div>
+    </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-  <h2>Projects</h2>
-
+  <h2>My <span>Projects</span></h2>
   <div class="projects-grid">
-
     <div class="glass project-card">
-      <img src="c:\Users\hp\AppData\Local\Packages\Microsoft.ScreenSketch_8wekyb3d8bbwe\TempState\Snips\Screenshot 2025-12-14 201900.png" alt="Finance Tracker">
-      <div class="project-content">
-        <h3>Finance Tracker for Students</h3>
-        <p>Expense tracking and budgeting platform for students.</p>
-        <p><b>Tech:</b> Python, JS, MySQL</p>
-      </div>
+      <img src="finance.png">
+      <h3>Finance Tracker for Students</h3>
+      <p>Budgeting and expense tracking platform.</p>
     </div>
-
     <div class="glass project-card">
-      <img src="c:\Users\hp\AppData\Local\Packages\Microsoft.ScreenSketch_8wekyb3d8bbwe\TempState\Snips\Screenshot 2025-12-14 201620.png" alt="ChaatBazaar">
-      <div class="project-content">
-        <h3>ChaatBazaar</h3>
-        <p>Marketplace connecting street vendors with suppliers.</p>
-        <p><b>Tech:</b> HTML, CSS, JS, ASP.NET</p>
-      </div>
+      <img src="chaatbazaar.png">
+      <h3>ChaatBazaar – Street Vendor Marketplace</h3>
+      <p>Connecting street vendors with suppliers.</p>
     </div>
-
   </div>
 </section>
 
-<!-- CONTACT -->
+<section id="education">
+  <h2>My <span>Education</span></h2>
+  <div class="timeline">
+    <div class="glass">
+      <b>Computer Science Engineering</b><br>
+      Undergraduate – Ongoing<br>
+      CGPA: 8.66
+    </div>
+    <div class="glass">
+      <b>12th Grade</b><br>
+      Sunshine Chennai Senior Secondary School<br>
+      88.2%
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>My <span>Certifications</span></h2>
+  <div class="cert-grid">
+    <div class="glass"><span class="badge">Development</span>Web Development – St. Joseph’s</div>
+    <div class="glass"><span class="badge">Networking</span>Cisco Learn-A-Thon 2025</div>
+    <div class="glass"><span class="badge">Security</span>Introduction to Cybersecurity – Cisco</div>
+    <div class="glass"><span class="badge">Programming</span>Python for Data Science – NPTEL (Elite)</div>
+    <div class="glass"><span class="badge">Security</span>Ethical Hacking – NPTEL</div>
+  </div>
+</section>
+
 <section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:layams09@gmail.com">layams09@gmail.com</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/laya-m-s" target="_blank">laya-m-s</a></p>
-  <p>GitHub: <a href="https://github.com/layams11" target="_blank">layams11</a></p>
+  <h2>Let's <span>Connect</span></h2>
+  <div class="contact-grid">
+    <div class="glass"><a href="mailto:layams09@gmail.com">📧 layams09@gmail.com</a></div>
+    <div class="glass"><a href="https://linkedin.com/in/laya-m-s">🔗 LinkedIn</a></div>
+    <div class="glass"><a href="https://github.com/layams11">💻 GitHub</a></div>
+  </div>
 </section>
 
 <footer>
-  © 2025 Laya M S • Portfolio
+  © 2025 Laya M S
 </footer>
 
 </body>
