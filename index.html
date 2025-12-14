@@ -1,128 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Laya M S | Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Laya M S | Portfolio</title>
 
-    <!-- FULL CSS INCLUDED -->
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; scroll-behavior: smooth; }
-        body { background: #f6f9fc; color: #222; }
+<style>
+/* ------------------ RESET ------------------ */
+*{
+  margin:0; padding:0; box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html{scroll-behavior:smooth}
 
-        /* NAVBAR */
-        nav { display:flex; justify-content:space-between; align-items:center; padding:20px 10%; background:#fff; position:sticky; top:0; z-index:100; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
-        nav .logo { font-size:24px; font-weight:bold; color:#007bff; }
-        nav ul { list-style:none; display:flex; gap:20px; }
-        nav ul li a { text-decoration:none; color:#222; font-weight:600; }
-        nav ul li a:hover { color:#007bff; }
+/* ------------------ BACKGROUND ------------------ */
+body{
+  color:#fff;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background-size: 600% 600%;
+  animation: gradientBG 16s ease infinite;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 
-        /* HERO */
-        #home { height:90vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 10%; }
-        #home h1 { font-size:45px; }
-        #home span { color:#007bff; font-weight:bold; }
-        #home p { margin-top:10px; font-size:18px; opacity:0.85; }
+/* ------------------ NAV ------------------ */
+nav{
+  position:fixed;
+  top:0; width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 10%;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  z-index:100;
+}
+nav h1{font-size:24px; color:#00eaff}
+nav ul{list-style:none; display:flex; gap:25px}
+nav a{text-decoration:none; color:#fff; font-weight:500}
+nav a:hover{color:#00eaff}
 
-        /* BUTTON STYLE (kept for other uses, but no Hire Me button on page) */
-        .btn { margin-top:20px; padding:12px 25px; background:#007bff; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; display:inline-block; }
+/* ------------------ SECTIONS ------------------ */
+section{
+  padding:100px 12%;
+}
+h2{
+  font-size:36px;
+  margin-bottom:25px;
+  color:#00eaff;
+}
 
-        /* SECTIONS */
-        section { padding:70px 12%; }
-        section h2 { font-size:32px; margin-bottom:25px; color:#111; }
+/* ------------------ HERO ------------------ */
+#home{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+#home h1{font-size:50px}
+#home span{color:#00eaff}
+#home p{margin-top:12px; font-size:18px; opacity:0.9}
 
-        /* ABOUT */
-        #about p { line-height:1.6; font-size:18px; opacity:0.9; }
+/* ------------------ ABOUT ------------------ */
+#about p{
+  font-size:18px;
+  line-height:1.7;
+  max-width:850px;
+}
 
-        /* SKILLS */
-        .skills-container { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:25px; }
-        .skill-card { padding:20px; background:#fff; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-        .skill-card h3 { margin-bottom:10px; color:#007bff; }
+/* ------------------ GLASS CARDS ------------------ */
+.glass{
+  background:rgba(255,255,255,0.1);
+  border-radius:16px;
+  padding:25px;
+  backdrop-filter: blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  transition:transform .4s;
+}
+.glass:hover{transform:translateY(-8px)}
 
-        /* PROJECTS */
-        .project-card { margin-top:20px; padding:25px; background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
-        .project-card h3 { color:#007bff; margin-bottom:8px; }
+/* ------------------ SKILLS ------------------ */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
 
-        /* CONTACT */
-        #contact a { color:#007bff; text-decoration:none; }
-        #contact p { margin-bottom:10px; font-size:18px; }
+/* ------------------ PROJECTS ------------------ */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+.project-card{
+  overflow:hidden;
+  position:relative;
+}
+.project-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:14px;
+}
+.project-content{
+  margin-top:15px;
+}
+.project-content h3{color:#00eaff}
 
-        /* FOOTER */
-        footer { background:#222; color:#fff; text-align:center; padding:20px; }
+/* ------------------ CONTACT ------------------ */
+#contact a{color:#00eaff; text-decoration:none}
+#contact p{font-size:18px; margin-bottom:10px}
 
-        /* MOBILE */
-        @media(max-width:768px){ nav ul { display:none; } }
-    </style>
+/* ------------------ FOOTER ------------------ */
+footer{
+  text-align:center;
+  padding:25px;
+  background:rgba(0,0,0,0.4);
+  margin-top:40px;
+}
+
+/* ------------------ MOBILE ------------------ */
+@media(max-width:768px){
+  nav ul{display:none}
+  #home h1{font-size:38px}
+}
+</style>
 </head>
+
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <div class="logo">Laya M S</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+<nav>
+  <h1>Laya M S</h1>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- HOME -->
-    <section id="home">
-        <h1>Hello, I'm <span>Laya M S</span></h1>
-        <p>Computer Science Engineering Student</p>
-    </section>
+<!-- HERO -->
+<section id="home">
+  <h1>Hello, I'm <span>Laya M S</span></h1>
+  <p>Computer Science Engineering Student • Cloud & Networking Enthusiast</p>
+</section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am a Computer Science engineering student with a foundation in Networking and Cloud technologies,
-            passionate about solving real-world problems using data-driven solutions. I enjoy building impactful
-            projects, practicing clean development skills, and continuously improving my technical abilities.
-        </p>
-    </section>
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="glass">
+    Engineering student with a foundation in Networking and Cloud technologies,
+    passionate about solving real-world problems through data-driven solutions.
+    Actively building impactful projects and continuously expanding technical skills.
+  </div>
+</section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-container">
-            <div class="skill-card"><h3>Programming</h3><p>Python, C, C#, Java, JavaScript</p></div>
-            <div class="skill-card"><h3>Web Technologies</h3><p>HTML, CSS, JavaScript, ASP.NET</p></div>
-            <div class="skill-card"><h3>Cloud & Networking</h3><p>Cloud Fundamentals, OSI, TCP/IP, Routing</p></div>
-            <div class="skill-card"><h3>Databases</h3><p>MySQL, SQL Server</p></div>
-            <div class="skill-card"><h3>Soft Skills</h3><p>Communication, Team Leadership, Problem Solving</p></div>
-        </div>
-    </section>
+<!-- SKILLS -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="glass">💻 Python, C, C#, Java, JavaScript</div>
+    <div class="glass">🌐 HTML, CSS, JS, ASP.NET</div>
+    <div class="glass">☁️ Cloud Basics, Networking, TCP/IP</div>
+    <div class="glass">🗄 MySQL, SQL Server</div>
+    <div class="glass">🤝 Communication, Team Leadership</div>
+  </div>
+</section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-card">
-            <h3>Finance Tracker for Students</h3>
-            <p>A simple and intuitive budgeting tool that helps students track expenses, visualize spending, and manage their monthly finances efficiently.</p>
-            <p><b>Tech Stack:</b> Python, JavaScript, MySQL</p>
-        </div>
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
 
-        <div class="project-card">
-            <h3>ChaatBazaar – Street Vendor Marketplace</h3>
-            <p>A marketplace platform that connects street vendors with suppliers, enabling easy product ordering, vendor dashboards, and inventory management for local businesses.</p>
-            <p><b>Tech Stack:</b> HTML, CSS, JavaScript, ASP.NET, MySQL</p>
-        </div>
-    </section>
+  <div class="projects-grid">
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <p><b>Email:</b> <a href="mailto:layams09@gmail.com">layams09@gmail.com</a></p>
-        <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/laya-m-s" target="_blank">www.linkedin.com/in/laya-m-s</a></p>
-        <p><b>GitHub:</b> <a href="https://github.com/layams11" target="_blank">github.com/layams11</a></p>
-    </section>
+    <div class="glass project-card">
+      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f" alt="Finance Tracker">
+      <div class="project-content">
+        <h3>Finance Tracker for Students</h3>
+        <p>Expense tracking and budgeting platform for students.</p>
+        <p><b>Tech:</b> Python, JS, MySQL</p>
+      </div>
+    </div>
 
-    <footer>
-        <p>© 2025 Laya M S | Portfolio</p>
-    </footer>
+    <div class="glass project-card">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="ChaatBazaar">
+      <div class="project-content">
+        <h3>ChaatBazaar</h3>
+        <p>Marketplace connecting street vendors with suppliers.</p>
+        <p><b>Tech:</b> HTML, CSS, JS, ASP.NET</p>
+      </div>
+    </div>
 
-    <script>console.log("Portfolio loaded — Hire Me button removed.");</script>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:layams09@gmail.com">layams09@gmail.com</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/laya-m-s" target="_blank">laya-m-s</a></p>
+  <p>GitHub: <a href="https://github.com/layams11" target="_blank">layams11</a></p>
+</section>
+
+<footer>
+  © 2025 Laya M S • Portfolio
+</footer>
+
 </body>
 </html>
